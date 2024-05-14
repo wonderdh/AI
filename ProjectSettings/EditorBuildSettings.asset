@@ -4,15 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-<<<<<<< HEAD
   m_Scenes: []
-=======
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-<<<<<<< HEAD
->>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
-=======
->>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_configObjects: {}
