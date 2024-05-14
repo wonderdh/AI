@@ -8,15 +8,11 @@ public class DragCam : MonoBehaviour
     public void Awake()
     {
 <<<<<<< HEAD
-<<<<<<< HEAD
 <<<<<<< Updated upstream
         sr = GameObject.Find("BgContent");
 =======
         sr = GameObject.Find("Scroll View");
 >>>>>>> Stashed changes
-=======
-        sr = GameObject.Find("Content");
->>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 =======
         sr = GameObject.Find("Content");
 >>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
