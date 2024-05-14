@@ -546,6 +546,9 @@ RectTransform:
 =======
   m_Children:
   - {fileID: 500702336}
+<<<<<<< HEAD
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
+=======
 >>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -556,11 +559,15 @@ RectTransform:
   m_Pivot: {x: 0, y: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< Updated upstream
 --- !u!1 &400979872
 =======
 --- !u!1 &365721359
+=======
+--- !u!1 &500702335
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -568,23 +575,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 365721360}
   - component: {fileID: 365721363}
   - component: {fileID: 365721362}
   - component: {fileID: 365721361}
   m_Layer: 0
   m_Name: Image
+=======
+  - component: {fileID: 500702336}
+  - component: {fileID: 500702339}
+  - component: {fileID: 500702338}
+  - component: {fileID: 500702337}
+  m_Layer: 5
+  m_Name: Scroll View
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &365721360
+=======
+--- !u!224 &500702336
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 365721359}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -592,18 +613,35 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1768065418}
+=======
+  m_GameObject: {fileID: 500702335}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 972701236}
+  m_Father: {fileID: 355760481}
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
+<<<<<<< HEAD
   m_SizeDelta: {x: 143.4493, y: 125.1666}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &365721361
+=======
+  m_SizeDelta: {x: 906, y: 419}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &500702337
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 365721359}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -643,27 +681,63 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &365721362
+=======
+  m_GameObject: {fileID: 500702335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Content: {fileID: 2117241202}
+  m_Horizontal: 1
+  m_Vertical: 1
+  m_MovementType: 1
+  m_Elasticity: 0.1
+  m_Inertia: 1
+  m_DecelerationRate: 0.135
+  m_ScrollSensitivity: 1
+  m_Viewport: {fileID: 972701236}
+  m_HorizontalScrollbar: {fileID: 0}
+  m_VerticalScrollbar: {fileID: 0}
+  m_HorizontalScrollbarVisibility: 2
+  m_VerticalScrollbarVisibility: 2
+  m_HorizontalScrollbarSpacing: -3
+  m_VerticalScrollbarSpacing: -3
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &500702338
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 365721359}
+=======
+  m_GameObject: {fileID: 500702335}
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: 5e650078a6c32f04b9d35deecc161933, type: 3}
   m_Type: 0
+=======
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -672,13 +746,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+<<<<<<< HEAD
 --- !u!222 &365721363
+=======
+--- !u!222 &500702339
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 365721359}
+=======
+  m_GameObject: {fileID: 500702335}
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_CullTransparentMesh: 1
 --- !u!1 &500702335
 >>>>>>> Stashed changes
@@ -926,11 +1008,15 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< Updated upstream
 --- !u!1 &659680264
 =======
 --- !u!1 &870913598
+=======
+--- !u!1 &972701235
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -938,6 +1024,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 870913599}
   - component: {fileID: 870913602}
   - component: {fileID: 870913601}
@@ -945,23 +1032,129 @@ GameObject:
   - component: {fileID: 870913603}
   m_Layer: 5
   m_Name: Button
+=======
+  - component: {fileID: 972701236}
+  - component: {fileID: 972701239}
+  - component: {fileID: 972701238}
+  - component: {fileID: 972701237}
+  m_Layer: 5
+  m_Name: Viewport
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &870913599
+=======
+--- !u!224 &972701236
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 870913598}
+=======
+  m_GameObject: {fileID: 972701235}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2117241202}
+  m_Father: {fileID: 500702336}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &972701237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972701235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 0
+--- !u!114 &972701238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972701235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &972701239
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972701235}
+  m_CullTransparentMesh: 1
+--- !u!1 &1388195045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1388195046}
+  - component: {fileID: 1388195048}
+  - component: {fileID: 1388195047}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1388195046
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388195045}
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+<<<<<<< HEAD
   m_Father: {fileID: 500702336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -970,11 +1163,22 @@ RectTransform:
   m_SizeDelta: {x: 90.8238, y: 41.8783}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &870913600
+=======
+  m_Father: {fileID: 2117241202}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.0012207031, y: 0.0005493164}
+  m_SizeDelta: {x: 1656.4, y: 992.81}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1388195047
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 870913598}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1037,6 +1241,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+  m_GameObject: {fileID: 1388195045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -1045,6 +1257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: 5e650078a6c32f04b9d35deecc161933, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1419,6 +1632,9 @@ MonoBehaviour:
 =======
   m_Sprite: {fileID: 21300000, guid: 515d661a0bbba4a4f849a9281a499e00, type: 3}
 >>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
+=======
+  m_Sprite: {fileID: 21300000, guid: 515d661a0bbba4a4f849a9281a499e00, type: 3}
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1429,7 +1645,11 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!222 &1016433674
+=======
+--- !u!222 &1388195048
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 =======
 --- !u!222 &1388195048
 >>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
@@ -1439,10 +1659,15 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 1016433670}
   m_CullTransparentMesh: 1
 >>>>>>> Stashed changes
 >>>>>>> 3efd283c9b3fc42ddf3e22c721fd9756b6d0bf56
+=======
+  m_GameObject: {fileID: 1388195045}
+  m_CullTransparentMesh: 1
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 =======
   m_GameObject: {fileID: 1388195045}
   m_CullTransparentMesh: 1
@@ -1493,10 +1718,14 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 --- !u!114 &1591485716
 =======
 --- !u!1 &1645682422
+=======
+--- !u!1 &2117241201
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1504,28 +1733,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 1645682423}
   - component: {fileID: 1645682426}
   - component: {fileID: 1645682425}
   - component: {fileID: 1645682424}
   m_Layer: 0
   m_Name: Button (2)
+=======
+  - component: {fileID: 2117241202}
+  m_Layer: 5
+  m_Name: Content
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &1645682423
+=======
+--- !u!224 &2117241202
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1645682422}
+=======
+  m_GameObject: {fileID: 2117241201}
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+<<<<<<< HEAD
   m_Children: []
   m_Father: {fileID: 1768065418}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1895,11 +2139,20 @@ CanvasRenderer:
   - {fileID: 1388195046}
   m_Father: {fileID: 972701236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+  m_Children:
+  - {fileID: 1388195046}
+  m_Father: {fileID: 972701236}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -300.2527, y: 284.18417}
   m_SizeDelta: {x: 605.2574, y: 984.0143}
   m_Pivot: {x: 0, y: 1}
+<<<<<<< HEAD
+>>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
+=======
 >>>>>>> parent of 6146496 (Merge pull request #5 from wonderdh/main)
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
