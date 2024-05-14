@@ -7,11 +7,7 @@ public class DragCam : MonoBehaviour
 
     public void Awake()
     {
-<<<<<<< Updated upstream
         sr = GameObject.Find("BgContent");
-=======
-        sr = GameObject.Find("Scroll View");
->>>>>>> Stashed changes
     }
 
     private void Update()
