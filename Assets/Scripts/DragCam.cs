@@ -7,7 +7,7 @@ public class DragCam : MonoBehaviour
 
     public void Awake()
     {
-        sr = GameObject.Find("BgContent");
+        sr = GameObject.Find("Content");
     }
 
     private void Update()
