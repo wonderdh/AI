@@ -9,6 +9,11 @@ public class Scene_change : MonoBehaviour
     public void SceneChange()
     {
         SceneManager.LoadScene("UI_Menu");
+    } // Start is called before the first frame update
+    public void SceneChangeGamePlay()
+    {
+        SceneManager.LoadScene("GamePlay");
+        Debug.Log("Clicekd");
     }
 }
 
