@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class InGameCamMove : MonoBehaviour
 {
@@ -18,30 +19,23 @@ public class InGameCamMove : MonoBehaviour
         ZOOM,
     }
 
-    private bool IsPointerOverUIObject()
+    private void Awake()
     {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        return results.Count > 0;
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        MoveCam();
-        ZoomCam();
-
+        MoveCamTouch();
+        ZoomCamTouch();
     }
 
-    private void MoveCam()
+    private void MoveCamTouch()
     {
         if (Input.touchCount == (int)GESTURE.MOVE)
         {
-
-            if (IsPointerOverUIObject())
+            if (SceneController.Instance.IsPointerOverUIObject())
             {
                 return;
             }
@@ -73,12 +67,11 @@ public class InGameCamMove : MonoBehaviour
         }
     }
 
-    private void ZoomCam()
+    private void ZoomCamTouch()
     {
         if (Input.touchCount == (int)GESTURE.ZOOM)
         {
-
-            if (IsPointerOverUIObject())
+            if (SceneController.Instance.IsPointerOverUIObject())
             {
                 return;
             }
@@ -101,4 +94,6 @@ public class InGameCamMove : MonoBehaviour
             Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, zoomIn, zoomOut);
         }
     }
+
+
 }

@@ -12,8 +12,7 @@ public class Scene_change : MonoBehaviour
     } // Start is called before the first frame update
     public void SceneChangeGamePlay()
     {
-        SceneManager.LoadScene("GamePlay");
-        Debug.Log("Clicekd");
+        SceneManager.LoadScene("Haeundae");
     }
 }
 
