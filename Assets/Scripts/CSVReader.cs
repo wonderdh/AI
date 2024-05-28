@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using System.Text.RegularExpressions;
+using Unity.VisualScripting;
 
 public class CSVReader
 {
@@ -14,6 +14,12 @@ public class CSVReader
     {
         var list = new List<Dictionary<string, object>>();
         TextAsset data = Resources.Load(file) as TextAsset;
+
+        if(data == null)
+        {
+            Debug.Log("NULL");
+            return null;
+        }
 
         var lines = Regex.Split(data.text, LINE_SPLIT_RE);
 
