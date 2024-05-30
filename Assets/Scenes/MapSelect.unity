@@ -367,7 +367,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 48c5d0094f8c2284890061975c73fc40, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bdacd798f2a49254fa483803b9de1d3a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -420,8 +420,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 207.56723, y: 36.960617}
-  m_SizeDelta: {x: 208.4884, y: 118.4374}
+  m_AnchoredPosition: {x: 219.26, y: -5.3166}
+  m_SizeDelta: {x: 132.5, y: 170.421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1244264024
 MonoBehaviour:
@@ -990,7 +990,7 @@ SpriteRenderer:
   m_Size: {x: 12.93, y: 7.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1781108597

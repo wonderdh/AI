@@ -48,5 +48,10 @@ public class SceneController : MonoBehaviour
     public void SceneChange(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-    } 
+    }
+
+    public void MapSelcetScene()
+    {
+        SceneManager.LoadScene("MapSelect");
+    }
 }
