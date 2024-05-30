@@ -10,8 +10,10 @@ public class InGameCamMove : MonoBehaviour
     float zoomIn = 2f;
     float zoomOut = 3.8f;
 
-    float maxCamMoveX = 7f;
-    float maxCamMoveY = 7f;
+    [SerializeField]
+    float maxCamMoveX = 17f;
+    [SerializeField]
+    float maxCamMoveY = 13f;
 
     enum GESTURE
     {
