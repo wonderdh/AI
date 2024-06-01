@@ -20,12 +20,14 @@ public class IngameManager : MonoBehaviour
 
     CSVManager csvM;
 
+    GameObject touchedObject = null;
+
     public void Start()
     {
         csvM = transform.GetComponent<CSVManager>();
 
         initBackground();
-        initContent();  
+        initContent();
     }
 
     public void Update()
@@ -35,8 +37,15 @@ public class IngameManager : MonoBehaviour
 
     public void CheckTouch()
     {
+        OnTouchStart();
+        OnTouchEnd();
+    }
+
+    private void OnTouchStart() {
         if (Input.GetMouseButtonDown(0))
         { // if left button pressed...
+            touchedObject = null;
+
             if (SceneController.Instance.IsPointerOverUIObject())
             {
                 return;
@@ -46,23 +55,49 @@ public class IngameManager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                for (int i = 0; i < hiddenObject.Length; i++)
+                if (!(hit.transform.tag == "HiddenObjects"))
                 {
-                    if (hiddenObject[i] == hit.collider.gameObject)
+                    return;
+                }
+
+                touchedObject = hit.transform.gameObject;
+            }
+        }
+    }
+
+    private void OnTouchEnd()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (SceneController.Instance.IsPointerOverUIObject())
+            {
+                return;
+            }
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject == touchedObject)
+                {
+                    for (int i = 0; i < hiddenObject.Length; i++)
                     {
-                        // 이미 찾은건지 아닌지 확인
-                        if (csvM.GetChecekd(i))
+                        if (hiddenObject[i] == hit.collider.gameObject)
                         {
+                            // 이미 찾은건지 아닌지 확인
+                            if (csvM.GetChecekd(i))
+                            {
+                                break;
+                            }
+
+                            // 이미 찾은게 아닐 경우
+                            CheckMark(hiddenObjectList[i]);
+
+                            GameObject findAnim = Instantiate(findAnimPrefab, hiddenObject[i].transform);
+
+                            csvM.UpdateCheck(i);
                             break;
                         }
-
-                        // 이미 찾은게 아닐 경우
-                        CheckMark(hiddenObjectList[i]);
-
-                        GameObject findAnim = Instantiate(findAnimPrefab, hiddenObject[i].transform);
-
-                        csvM.UpdateCheck(i);
-                        break;
                     }
                 }
             }
@@ -85,7 +120,7 @@ public class IngameManager : MonoBehaviour
             }
         }
     }
-    
+
     private void initContent()
     {
         if (content == null)
@@ -116,4 +151,5 @@ public class IngameManager : MonoBehaviour
         GameObject checkMark = go.transform.GetChild(0).gameObject;
         checkMark.SetActive(true);
     }
+
 }

@@ -730,7 +730,7 @@ GameObject:
   - component: {fileID: 284294361}
   m_Layer: 0
   m_Name: 09
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1059,7 +1059,7 @@ GameObject:
   - component: {fileID: 450193517}
   m_Layer: 0
   m_Name: 02
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1637,7 +1637,7 @@ GameObject:
   - component: {fileID: 753802643}
   m_Layer: 0
   m_Name: 11
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2144,7 +2144,7 @@ GameObject:
   - component: {fileID: 894864024}
   m_Layer: 0
   m_Name: 08
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2382,7 +2382,7 @@ GameObject:
   - component: {fileID: 951260115}
   m_Layer: 0
   m_Name: 10
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2488,7 +2488,7 @@ GameObject:
   - component: {fileID: 955498046}
   m_Layer: 0
   m_Name: 12
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2883,7 +2883,7 @@ GameObject:
   - component: {fileID: 1233494099}
   m_Layer: 0
   m_Name: 06
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3201,7 +3201,7 @@ GameObject:
   - component: {fileID: 1452139261}
   m_Layer: 0
   m_Name: 05
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3307,7 +3307,7 @@ GameObject:
   - component: {fileID: 1460590751}
   m_Layer: 0
   m_Name: 04
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3573,7 +3573,7 @@ GameObject:
   - component: {fileID: 1762136885}
   m_Layer: 0
   m_Name: 07
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3932,7 +3932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.3726415, g: 0.615025, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3969,7 +3969,7 @@ GameObject:
   - component: {fileID: 2088407573}
   m_Layer: 0
   m_Name: 13
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4181,7 +4181,7 @@ GameObject:
   - component: {fileID: 2125906127}
   m_Layer: 0
   m_Name: 03
-  m_TagString: Untagged
+  m_TagString: HiddenObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4344,7 +4344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7677530007079882463, guid: 980a9b3bd6f95514aa3f4b4a7b4e9901, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: HiddenObjects
       objectReference: {fileID: 0}
     - target: {fileID: 9068512421447893375, guid: 980a9b3bd6f95514aa3f4b4a7b4e9901, type: 3}
       propertyPath: m_Size.x

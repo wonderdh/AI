@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Background
   - Content
+  - HiddenObjects
   layers:
   - Default
   - TransparentFX

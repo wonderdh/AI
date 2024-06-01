@@ -15,6 +15,9 @@ public class InGameCamMove : MonoBehaviour
     [SerializeField]
     float maxCamMoveY = 13f;
 
+    bool isMoving = true;
+    bool isMoveable = true;
+
     enum GESTURE
     {
         MOVE = 1,
@@ -31,16 +34,34 @@ public class InGameCamMove : MonoBehaviour
     {
         MoveCamTouch();
         ZoomCamTouch();
+        moveCheck();
+    }
+
+    private void moveCheck()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            isMoveable = true;
+            isMoving = false;
+        }
     }
 
     private void MoveCamTouch()
     {
+        if (isMoveable == false)
+        {
+            return;
+        }
+
         if (Input.touchCount == (int)GESTURE.MOVE)
         {
-            if (SceneController.Instance.IsPointerOverUIObject())
+            if (SceneController.Instance.IsPointerOverUIObject() && !isMoving)
             {
+                isMoveable = false;
                 return;
             }
+
+            isMoving = true;
 
             Touch touch = Input.touches[0];
 
