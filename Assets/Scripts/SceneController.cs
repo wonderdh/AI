@@ -20,7 +20,7 @@ public class SceneController : MonoBehaviour
         }
 
         Application.targetFrameRate = 60;
-        Screen.orientation = ScreenOrientation.AutoRotation;
+        //Screen.orientation = ScreenOrientation.AutoRotation;
     }
 
     public static SceneController Instance

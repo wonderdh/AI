@@ -7,6 +7,9 @@ public class IngameUIManager : MonoBehaviour
     [SerializeField]
     GameObject SettingPanel;
 
+    [SerializeField]
+    IngameManager igManager;
+
     private void Start()
     {
         SettingPanel.SetActive(false);
@@ -31,7 +34,7 @@ public class IngameUIManager : MonoBehaviour
 
     public void HomeButton()
     {
-        // 여기에 저장 기능 추가
+        igManager.saveMapInfo();
         SceneController.Instance.MapSelcetScene();
     }
 }

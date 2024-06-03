@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,16 +20,28 @@ public class IngameManager : MonoBehaviour
     [SerializeField]
     GameObject findAnimPrefab;
 
-    CSVManager csvM;
-
     GameObject touchedObject = null;
+    
+    [SerializeField]
+    JSonController jsonC;
+    MapInfo mapInfo = null;
+
+    [SerializeField]
+    Slider progressBar;
+    [SerializeField]
+    TMP_Text progressText;
+
+    int totalObjects = 0;
+    int checkedObject = 0;
 
     public void Start()
     {
-        csvM = transform.GetComponent<CSVManager>();
+        initMapInfo();
 
         initBackground();
         initContent();
+
+        SetProgressBar();
     }
 
     public void Update()
@@ -85,7 +99,7 @@ public class IngameManager : MonoBehaviour
                         if (hiddenObject[i] == hit.collider.gameObject)
                         {
                             // 이미 찾은건지 아닌지 확인
-                            if (csvM.GetChecekd(i))
+                            if (mapInfo.checkedList[i] == "o")
                             {
                                 break;
                             }
@@ -95,7 +109,10 @@ public class IngameManager : MonoBehaviour
 
                             GameObject findAnim = Instantiate(findAnimPrefab, hiddenObject[i].transform);
 
-                            csvM.UpdateCheck(i);
+                            mapInfo.checkedList[i] = "o"; // 업데이트
+
+                            checkedObject++;
+                            SetProgressBar();
                             break;
                         }
                     }
@@ -131,15 +148,49 @@ public class IngameManager : MonoBehaviour
 
             hiddenObjectList = new GameObject[childCount];
 
+            totalObjects = childCount;
+
             for (int i = 0; i < childCount; i++)
             {
                 hiddenObjectList[i] = content.transform.GetChild(i).gameObject;
 
-                if (csvM.GetChecekd(i))
+                if (mapInfo.checkedList[i] == "o")
                 {
                     CheckMark(hiddenObjectList[i]);
+                    checkedObject++;
                 }
             }
+        }
+    }
+
+    private void SetProgressBar()
+    {
+        StartCoroutine(LerpProgressBar());
+    } 
+
+    private IEnumerator LerpProgressBar()
+    {
+        float delta = 0f;
+        float duration = 0.5f;
+        float startValue = progressBar.value;
+        float endValue = (float)checkedObject / (float)totalObjects;
+
+        while(delta <= duration)
+        {
+            float t = delta / duration;
+            progressBar.value = Mathf.Lerp(startValue, endValue, t);
+
+            //Debug.Log(progressBar.value);
+
+            delta += Time.deltaTime;
+            yield return null;
+        }
+
+        progressText.text = checkedObject.ToString() + " / " + totalObjects.ToString();
+
+        if(progressBar.value >= 0.95f)
+        {
+            progressText.text = "Complete!!";
         }
     }
 
@@ -152,4 +203,19 @@ public class IngameManager : MonoBehaviour
         checkMark.SetActive(true);
     }
 
+    private void initMapInfo()
+    {
+        mapInfo = JsonUtility.FromJson<MapInfo>(jsonC.LoadMapInfo(SceneController.Instance.GetActiveScene().name));
+    }
+
+    public string getDescription(int i)
+    {
+        return mapInfo.descriptionList[i];
+    }
+
+    public void saveMapInfo()
+    {
+
+        jsonC.SaveMapInfo(SceneController.Instance.GetActiveScene().name, JsonUtility.ToJson(mapInfo));
+    }
 }

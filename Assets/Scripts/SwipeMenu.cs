@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +7,7 @@ public class SwipeMenu : MonoBehaviour
     public Text descriptionText;
 
     [SerializeField]
-    private CSVManager csvManager;
+    IngameManager igManager;
 
     float scroll_pos = 0;
     float[] pos;
@@ -28,8 +26,6 @@ public class SwipeMenu : MonoBehaviour
             int index = i; // 로컬 변수를 사용하여 클로저 문제를 해결합니다.
             transform.GetChild(i).GetComponent<Button>().onClick.AddListener(() => OnElementClick(index));
         }
-
-        UpdateDescription(0);
     }
 
     void Update()
@@ -74,7 +70,7 @@ public class SwipeMenu : MonoBehaviour
     {
         if (index >= 0 && index < transform.childCount)
         {
-            descriptionText.text = csvManager.GetDescriptions(index);
+            descriptionText.text = igManager.getDescription(index);
         }
     }
 }
