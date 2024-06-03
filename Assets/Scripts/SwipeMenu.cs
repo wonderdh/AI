@@ -7,7 +7,10 @@ public class SwipeMenu : MonoBehaviour
 {
     public Scrollbar scrollbar;
     public Text descriptionText;
-    public List<string> descriptions;
+
+    [SerializeField]
+    private CSVManager csvManager;
+
     float scroll_pos = 0;
     float[] pos;
 
@@ -69,9 +72,9 @@ public class SwipeMenu : MonoBehaviour
 
     void UpdateDescription(int index)
     {
-        if (index >= 0 && index < descriptions.Count)
+        if (index >= 0 && index < transform.childCount)
         {
-            descriptionText.text = descriptions[index];
+            descriptionText.text = csvManager.GetDescriptions(index);
         }
     }
 }

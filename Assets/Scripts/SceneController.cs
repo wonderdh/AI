@@ -18,6 +18,9 @@ public class SceneController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        Application.targetFrameRate = 60;
+        Screen.orientation = ScreenOrientation.AutoRotation;
     }
 
     public static SceneController Instance

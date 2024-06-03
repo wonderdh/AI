@@ -9,6 +9,7 @@ public class CSVManager : MonoBehaviour
     string csvPath = "MapInfo/";
 
     string[] checkedList;
+    public string[] descriptionList;
 
     List<Dictionary<string, object>> dicList = new List<Dictionary<string, object>>();
 
@@ -19,11 +20,18 @@ public class CSVManager : MonoBehaviour
         dicList = CSVReader.Read(csvPath);
 
         checkedList = new string[dicList.Count];
+        descriptionList = new string[dicList.Count];
         
         for(int i = 0; i < checkedList.Length; i++)
         {
             checkedList[i] = dicList[i]["checked"].ToString();
+            descriptionList[i] = dicList[i]["description"].ToString();
         }
+    }
+
+    public string GetDescriptions(int i)
+    {
+        return descriptionList[i];
     }
 
     public bool GetChecekd(int i)
