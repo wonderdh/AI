@@ -1,13 +1,17 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SwipeMenu : MonoBehaviour
 {
     public Scrollbar scrollbar;
-    public Text descriptionText;
+    public TMP_Text descriptionText;
 
     [SerializeField]
     IngameManager igManager;
+
+    [SerializeField]
+    Descriptions ds;
 
     float scroll_pos = 0;
     float[] pos;
@@ -23,7 +27,7 @@ public class SwipeMenu : MonoBehaviour
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            int index = i; // ·ÎÄÃ º¯¼ö¸¦ »ç¿ëÇÏ¿© Å¬·ÎÀú ¹®Á¦¸¦ ÇØ°áÇÕ´Ï´Ù.
+            int index = i; // ë¡œì»¬ ë³€ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì—¬ í´ë¡œì € ë¬¸ì œë¥¼ í•´ê²°í•©ë‹ˆë‹¤.
             transform.GetChild(i).GetComponent<Button>().onClick.AddListener(() => OnElementClick(index));
         }
     }
@@ -70,7 +74,7 @@ public class SwipeMenu : MonoBehaviour
     {
         if (index >= 0 && index < transform.childCount)
         {
-            descriptionText.text = igManager.getDescription(index);
+            descriptionText.text = ds.descriptions[index];
         }
     }
 }

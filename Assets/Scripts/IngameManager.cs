@@ -98,18 +98,18 @@ public class IngameManager : MonoBehaviour
                     {
                         if (hiddenObject[i] == hit.collider.gameObject)
                         {
-                            // ÀÌ¹Ì Ã£Àº°ÇÁö ¾Æ´ÑÁö È®ÀÎ
+                            // ì´ë¯¸ ì°¾ì€ê±´ì§€ ì•„ë‹Œì§€ í™•ì¸
                             if (mapInfo.checkedList[i] == "o")
                             {
                                 break;
                             }
 
-                            // ÀÌ¹Ì Ã£Àº°Ô ¾Æ´Ò °æ¿ì
+                            // ì´ë¯¸ ì°¾ì€ê²Œ ì•„ë‹ ê²½ìš°
                             CheckMark(hiddenObjectList[i]);
 
                             GameObject findAnim = Instantiate(findAnimPrefab, hiddenObject[i].transform);
 
-                            mapInfo.checkedList[i] = "o"; // ¾÷µ¥ÀÌÆ®
+                            mapInfo.checkedList[i] = "o"; // ì—…ë°ì´íŠ¸
 
                             checkedObject++;
                             SetProgressBar();
@@ -208,13 +208,17 @@ public class IngameManager : MonoBehaviour
         mapInfo = JsonUtility.FromJson<MapInfo>(jsonC.LoadMapInfo(SceneController.Instance.GetActiveScene().name));
     }
 
-    public string getDescription(int i)
-    {
-        return mapInfo.descriptionList[i];
-    }
-
     public void saveMapInfo()
     {
+        jsonC.SaveMapInfo(SceneController.Instance.GetActiveScene().name, JsonUtility.ToJson(mapInfo));
+    }
+
+    public void resetMapInfo()
+    {
+        for(int i = 0; i < mapInfo.checkedList.Length; i++)
+        {
+            mapInfo.checkedList[i] = "x";
+        }
 
         jsonC.SaveMapInfo(SceneController.Instance.GetActiveScene().name, JsonUtility.ToJson(mapInfo));
     }

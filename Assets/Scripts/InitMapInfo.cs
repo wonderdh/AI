@@ -7,49 +7,37 @@ using TMPro;
 
 public class InitMapInfo : MonoBehaviour
 {
-    string[] mapNames = { "Haeundae"};
+    string[] mapNames = { "Haeundae" };
+    int[] mapObjects = { 13 };
 
     [SerializeField]
     TMP_Text message;
+
+    string srcFile = Application.dataPath + "/Resources/MapInfo/";
 
     [SerializeField]
     JSonController jc;
 
     void Start()
     {
-        string path = Application.persistentDataPath + "/MapInfo";
-        message.text = path;
+        string path = Application.persistentDataPath + "/MapInfo/";
 
         if (!System.IO.File.Exists(path))
         {
             System.IO.Directory.CreateDirectory(path);
         }
-
-        for(int i = 0; i < mapNames.Length; i++)
+        for (int i = 0; i < mapNames.Length; i++)
         {
             if (!System.IO.File.Exists(path + "/" + mapNames[i] + ".json"))
             {
-                Debug.Log("no");
-                List<Dictionary<string, object>> dicList = new List<Dictionary<string, object>>();
-                dicList = CSVReader.Read(mapNames[i]);
+                MapInfo mapInfo = new MapInfo(mapObjects[i]);
 
-                string[] checkedList = new string[dicList.Count];
-                string[] descriptionList = new string[dicList.Count];
+                string ju = JsonUtility.ToJson(mapInfo);
+                System.IO.File.WriteAllText(path + mapNames[i] + ".json", ju);
 
-                for(int c = 0; c < dicList.Count; c++)
-                {
-                    checkedList[c] = dicList[c]["checkedList"].ToString();
-                    descriptionList[c] = dicList[c]["descriptionList"].ToString();
-                }
-
-                MapInfo mapInfo = new MapInfo(checkedList, descriptionList);
-
-                string jsonInfo = JsonUtility.ToJson(mapInfo);
-
-                path += "/" + mapNames[i] + ".json";
-
-                System.IO.File.WriteAllText(path, jsonInfo);
-            }
+                message.text += "new";
+                message.text += mapNames[i] + " ";
+            } 
         }
     }
 }

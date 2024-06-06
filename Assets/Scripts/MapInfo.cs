@@ -1,19 +1,21 @@
-class MapInfo
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MapInfo
 {
     public string[] id;
     public string[] checkedList;
-    public string[] descriptionList;
 
-    public MapInfo(string[] checkedList, string[] descriptionList)
+    public MapInfo(int n)
     {
-        this.checkedList = checkedList;
-        this.descriptionList = descriptionList;
+        this.id = new string[n];
+        this.checkedList = new string[n];
 
-        this.id = new string[checkedList.Length];
-
-        for (int i = 0; i < checkedList.Length; i++)
+        for(int i = 0; i < n; i++)
         {
             id[i] = i.ToString();
+            checkedList[i] = "x";
         }
     }
 }

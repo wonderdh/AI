@@ -22,13 +22,14 @@ public class IngameUIManager : MonoBehaviour
 
     public void ExitMenuButton()
     {
-        // ÀúÀåÇÏ°í ³ª°¡±â
+        // ì €ì¥í•˜ê³  ë‚˜ê°€ê¸°
         SettingPanel.SetActive(false);
     }
 
     public void RestartButton()
     {
-        // ÀúÀå ¾ÈÇÏ°í ´Ù½Ã½ÃÀÛ or ÃÊ±âÈ­ ±â´É
+        // ì €ì¥ ì•ˆí•˜ê³  ë‹¤ì‹œì‹œì‘ or ì´ˆê¸°í™” ê¸°ëŠ¥
+        igManager.resetMapInfo();
         SceneController.Instance.SceneChange(SceneController.Instance.GetActiveScene().name);
     }
 
