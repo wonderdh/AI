@@ -30,12 +30,13 @@ public class IngameUIManager : MonoBehaviour
     {
         // 저장 안하고 다시시작 or 초기화 기능
         igManager.resetMapInfo();
-        SceneController.Instance.SceneChange(SceneController.Instance.GetActiveScene().name);
+
+        SceneController.Instance.setTargetScene(SceneController.Instance.GetActiveScene().name);
     }
 
     public void HomeButton()
     {
         igManager.saveMapInfo();
-        SceneController.Instance.MapSelcetScene();
+        SceneController.Instance.setTargetScene("MapSelect");
     }
 }

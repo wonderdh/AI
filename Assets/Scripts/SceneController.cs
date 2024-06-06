@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -12,30 +13,37 @@ public class SceneController : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
 
             DontDestroyOnLoad(this.gameObject);
-        } else
+        }
+        else
         {
-            Destroy(this.gameObject);
+            if (instance != this)
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         Application.targetFrameRate = 60;
-        //Screen.orientation = ScreenOrientation.AutoRotation;
     }
 
     public static SceneController Instance
     {
-        get { 
-            if(null == instance)
+        get
+        {
+            if (null == instance)
             {
                 return null;
             }
             return instance;
         }
     }
+
+    [SerializeField]
+    private string targetScene = "";
 
     public Scene GetActiveScene()
     {
@@ -51,13 +59,34 @@ public class SceneController : MonoBehaviour
         return results.Count > 0;
     }
 
-    public void SceneChange(string sceneName)
+    public void setTargetScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        ChangeTarget(sceneName);
+        Debug.Log(targetScene);
+        changeScene();
     }
 
-    public void MapSelcetScene()
+    private void ChangeTarget(string sceneName)
     {
-        SceneManager.LoadScene("MapSelect");
+        this.targetScene = sceneName;
+    }
+
+    public void changeScene()
+    {
+        SceneManager.LoadScene(this.targetScene);
+    }
+
+    IEnumerator waiting()
+    {
+        float delay = 0;
+
+        while(delay < 0.5f)
+        {
+            delay += Time.deltaTime;
+
+            yield return null;
+        }
+
+        changeScene();
     }
 }

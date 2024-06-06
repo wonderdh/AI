@@ -31,8 +31,16 @@ public class IngameManager : MonoBehaviour
     [SerializeField]
     TMP_Text progressText;
 
+    [SerializeField]
+    GameObject[] starList;
+    
+
     int totalObjects = 0;
     int checkedObject = 0;
+
+    int[] starGive = new int[3];
+
+    public int getStar = 0;
 
     public void Start()
     {
@@ -42,6 +50,15 @@ public class IngameManager : MonoBehaviour
         initContent();
 
         SetProgressBar();
+
+        for(int i = 0; i < starGive.Length; i++)
+        {
+            starGive[i] = (i + 1) * (totalObjects / 3);
+        }
+
+        starGive[2] = totalObjects;
+
+        checkStar();
     }
 
     public void Update()
@@ -113,6 +130,8 @@ public class IngameManager : MonoBehaviour
 
                             checkedObject++;
                             SetProgressBar();
+                            checkStar();
+
                             break;
                         }
                     }
@@ -221,5 +240,22 @@ public class IngameManager : MonoBehaviour
         }
 
         jsonC.SaveMapInfo(SceneController.Instance.GetActiveScene().name, JsonUtility.ToJson(mapInfo));
+        // 여기에 추가
+    }
+
+    private void checkStar()
+    {
+        for(int i = 0; i < starGive.Length; i++)
+        {
+            if (checkedObject >= starGive[i])
+            {
+                starList[i].gameObject.SetActive(true);
+                getStar++;
+                Debug.Log(getStar);
+            } else
+            {
+                starList[i].gameObject.SetActive(false);
+            }
+        }
     }
 }

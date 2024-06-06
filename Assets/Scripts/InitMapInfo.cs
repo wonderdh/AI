@@ -7,8 +7,8 @@ using TMPro;
 
 public class InitMapInfo : MonoBehaviour
 {
-    string[] mapNames = { "Haeundae" };
-    int[] mapObjects = { 13 };
+    string[] mapNames = { "Haeundae", "Baseball" };
+    int[] mapObjects = { 13, 13 };
 
     [SerializeField]
     TMP_Text message;

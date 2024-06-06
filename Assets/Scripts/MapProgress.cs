@@ -5,8 +5,9 @@ using UnityEngine;
 public class MapProgress
 {
     public string[] mapName;
-    public int[] maxStar;
-    public int[] currentStar;
+    public int[] earnedStar;
+    public bool[] isUnlocked;
+    public int[] unlockCost;
 
     public MapProgress(int n)
     {
