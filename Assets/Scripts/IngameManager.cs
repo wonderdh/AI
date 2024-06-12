@@ -13,6 +13,8 @@ public class IngameManager : MonoBehaviour
 
     [SerializeField]
     GameObject content;
+    [SerializeField]
+    int contentCount;
 
     [SerializeField]
     GameObject[] hiddenObjectList;
@@ -22,8 +24,6 @@ public class IngameManager : MonoBehaviour
 
     GameObject touchedObject = null;
     
-    [SerializeField]
-    JSonController jsonC;
     MapInfo mapInfo = null;
 
     [SerializeField]
@@ -33,7 +33,8 @@ public class IngameManager : MonoBehaviour
 
     [SerializeField]
     GameObject[] starList;
-    
+
+    public string[] description;
 
     int totalObjects = 0;
     int checkedObject = 0;
@@ -42,11 +43,11 @@ public class IngameManager : MonoBehaviour
 
     public int getStar = 0;
 
-    public void Start()
+    public void Awake()
     {
-        initMapInfo();
-
         initBackground();
+
+        initMapInfo();
         initContent();
 
         SetProgressBar();
@@ -116,7 +117,7 @@ public class IngameManager : MonoBehaviour
                         if (hiddenObject[i] == hit.collider.gameObject)
                         {
                             // 이미 찾은건지 아닌지 확인
-                            if (mapInfo.checkedList[i] == "o")
+                            if (mapInfo.checkedList[i] == 1)
                             {
                                 break;
                             }
@@ -126,7 +127,7 @@ public class IngameManager : MonoBehaviour
 
                             GameObject findAnim = Instantiate(findAnimPrefab, hiddenObject[i].transform);
 
-                            mapInfo.checkedList[i] = "o"; // 업데이트
+                            mapInfo.checkedList[i] = 1; // 업데이트
 
                             checkedObject++;
                             SetProgressBar();
@@ -146,15 +147,21 @@ public class IngameManager : MonoBehaviour
         {
             background = GameObject.FindGameObjectWithTag("Background");
 
-            int childCount = background.transform.childCount;
+            contentCount = background.transform.childCount;
 
-            hiddenObject = new GameObject[childCount];
+            hiddenObject = new GameObject[contentCount];
 
-            for (int i = 0; i < childCount; i++)
+            for (int i = 0; i < contentCount; i++)
             {
                 hiddenObject[i] = background.transform.GetChild(i).gameObject;
             }
+        } else
+        {
+            contentCount = background.transform.childCount;
         }
+
+        mapInfo = new MapInfo(contentCount);
+        description = BuhitDB.Instance.DB_Description(contentCount);
     }
 
     private void initContent()
@@ -173,7 +180,7 @@ public class IngameManager : MonoBehaviour
             {
                 hiddenObjectList[i] = content.transform.GetChild(i).gameObject;
 
-                if (mapInfo.checkedList[i] == "o")
+                if (mapInfo.checkedList[i] == 1)
                 {
                     CheckMark(hiddenObjectList[i]);
                     checkedObject++;
@@ -224,28 +231,27 @@ public class IngameManager : MonoBehaviour
 
     private void initMapInfo()
     {
-        mapInfo = JsonUtility.FromJson<MapInfo>(jsonC.LoadMapInfo(SceneController.Instance.GetActiveScene().name));
+        //mapInfo = JsonUtility.FromJson<MapInfo>(jsonC.LoadMapInfo(SceneController.Instance.GetActiveScene().name));
+        mapInfo.checkedList = BuhitDB.Instance.DBisChecked(contentCount);
     }
 
     public void saveMapInfo()
     {
-        jsonC.SaveMapInfo(SceneController.Instance.GetActiveScene().name, JsonUtility.ToJson(mapInfo));
+        float progress = (float)checkedObject / (float)totalObjects;
+
+        BuhitDB.Instance.UpdateDb(mapInfo.checkedList, progress, getStar);
     }
 
     public void resetMapInfo()
     {
-        for(int i = 0; i < mapInfo.checkedList.Length; i++)
-        {
-            mapInfo.checkedList[i] = "x";
-        }
-
-        jsonC.SaveMapInfo(SceneController.Instance.GetActiveScene().name, JsonUtility.ToJson(mapInfo));
-        // 여기에 추가
+        BuhitDB.Instance.ResetMap(contentCount);
     }
 
     private void checkStar()
     {
-        for(int i = 0; i < starGive.Length; i++)
+        getStar = 0;
+
+        for (int i = 0; i < starGive.Length; i++)
         {
             if (checkedObject >= starGive[i])
             {
@@ -258,4 +264,6 @@ public class IngameManager : MonoBehaviour
             }
         }
     }
+
+
 }

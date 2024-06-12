@@ -11,7 +11,7 @@ public class SwipeMenu : MonoBehaviour
     IngameManager igManager;
 
     [SerializeField]
-    Descriptions ds;
+    string[] ds;
 
     float scroll_pos = 0;
     float[] pos;
@@ -30,12 +30,16 @@ public class SwipeMenu : MonoBehaviour
             int index = i; // 로컬 변수를 사용하여 클로저 문제를 해결합니다.
             transform.GetChild(i).GetComponent<Button>().onClick.AddListener(() => OnElementClick(index));
         }
+
+        ds = igManager.description;
     }
 
     void Update()
     {
+
         if (Input.GetMouseButton(0))
         {
+            
             scroll_pos = 1 - scrollbar.value;
         }
         else
@@ -74,7 +78,7 @@ public class SwipeMenu : MonoBehaviour
     {
         if (index >= 0 && index < transform.childCount)
         {
-            descriptionText.text = ds.descriptions[index];
+            descriptionText.text = ds[index];
         }
     }
 }

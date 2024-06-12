@@ -89,4 +89,9 @@ public class SceneController : MonoBehaviour
 
         changeScene();
     }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

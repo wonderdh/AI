@@ -37,6 +37,6 @@ public class IngameUIManager : MonoBehaviour
     public void HomeButton()
     {
         igManager.saveMapInfo();
-        SceneController.Instance.setTargetScene("MapSelect");
+        SceneController.Instance.setTargetScene("MapSelectSwipeTest");
     }
 }
