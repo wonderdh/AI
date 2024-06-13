@@ -43,6 +43,11 @@ public class IngameManager : MonoBehaviour
 
     public int getStar = 0;
 
+    [SerializeField]
+    AudioSource buttonAudioSource;
+    [SerializeField]
+    AudioClip[] audioClip;
+
     public void Awake()
     {
         initBackground();
@@ -133,6 +138,9 @@ public class IngameManager : MonoBehaviour
                             SetProgressBar();
                             checkStar();
 
+                            buttonAudioSource.Stop();
+                            buttonAudioSource.PlayOneShot(audioClip[1]);
+
                             break;
                         }
                     }
@@ -218,6 +226,8 @@ public class IngameManager : MonoBehaviour
         {
             progressText.text = "Complete!!";
 
+            buttonAudioSource.Stop();
+            buttonAudioSource.PlayOneShot(audioClip[2]);
         }
     }
 
@@ -266,5 +276,9 @@ public class IngameManager : MonoBehaviour
         }
     }
 
-
+    public void buttonClickSoundPlay()
+    {
+        buttonAudioSource.Stop();
+        buttonAudioSource.PlayOneShot(audioClip[0]);
+    }
 }
