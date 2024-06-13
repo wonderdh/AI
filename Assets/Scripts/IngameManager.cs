@@ -34,6 +34,11 @@ public class IngameManager : MonoBehaviour
     [SerializeField]
     GameObject[] starList;
 
+    [SerializeField]
+    AudioSource audioSource1;
+    [SerializeField]
+    AudioSource audioSource2;
+
     public string[] description;
 
     int totalObjects = 0;
@@ -42,6 +47,8 @@ public class IngameManager : MonoBehaviour
     int[] starGive = new int[3];
 
     public int getStar = 0;
+
+    
 
     public void Awake()
     {
@@ -132,7 +139,7 @@ public class IngameManager : MonoBehaviour
                             checkedObject++;
                             SetProgressBar();
                             checkStar();
-
+                            audioSource1.Play();
                             break;
                         }
                     }
@@ -217,6 +224,7 @@ public class IngameManager : MonoBehaviour
         if(progressBar.value >= 0.95f)
         {
             progressText.text = "Complete!!";
+            audioSource2.Play();
         }
     }
 

@@ -25,7 +25,7 @@ public class FindAnim : MonoBehaviour
 
     IEnumerator findAnim()
     {
-        for(int i = 0; i < sprites.Length; i++)
+        for (int i = 0; i < sprites.Length; i++)
         {
             spriteRenderer.sprite = sprites[i];
             yield return new WaitForSeconds(0.15f);
