@@ -42,6 +42,15 @@ public class MapSelectSwipe : MonoBehaviour
     [SerializeField]
     TMP_Text unlockPanelMapName;
     Sprite[] mapImages;
+    [SerializeField]
+    GameObject unlockButton;
+
+    [SerializeField]
+    GameObject messagePanel;
+    [SerializeField]
+    GameObject SuccessMessage;
+    [SerializeField]
+    GameObject FailMessage;
 
     void Start()
     {
@@ -50,6 +59,9 @@ public class MapSelectSwipe : MonoBehaviour
         currentStar = BuhitDB.Instance.GetStar();
 
         star.text = "x " + currentStar;
+
+        unlockPanel.SetActive(false);
+        messagePanel.SetActive(false);
 
         //msif.printThis();
         mapImages = new Sprite[transform.childCount];
@@ -166,6 +178,8 @@ public class MapSelectSwipe : MonoBehaviour
         {
             unlockThumbnail.sprite = mapImages[focusedMapIndex];
             unlockPanelMapName.text = msif.Name[focusedMapIndex];
+
+            unlockButton.SetActive(true);
             unlockPanel.SetActive(true);
 
             Debug.Log("사라");
@@ -174,21 +188,34 @@ public class MapSelectSwipe : MonoBehaviour
 
     public void closeUnlockPanel()
     {
+        messagePanel.SetActive(false);
         unlockPanel.SetActive(false);
+
+        SceneController.Instance.ReloadScene();
     }
 
     public void onClickUnlockButton()
     {
-        if(currentStar >= 3)
+        unlockButton.SetActive(false);
+
+        if (currentStar >= 3)
         {
             currentStar -= 3;
 
             BuhitDB.Instance.onUnlock(currentStar, focusedMapIndex);
             
             Debug.Log("unlock success!!" + focusedMapIndex);
-            SceneController.Instance.ReloadScene();
+
+            FailMessage.SetActive(false);
+            SuccessMessage.SetActive(true);
+
+            messagePanel.SetActive(true);
         } else
         {
+            FailMessage.SetActive(true);
+            SuccessMessage.SetActive(false);
+
+            messagePanel.SetActive(true);
             Debug.Log("unlock failed...");
         }
     }
