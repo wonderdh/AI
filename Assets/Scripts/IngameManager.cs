@@ -60,6 +60,7 @@ public class IngameManager : MonoBehaviour
         for(int i = 0; i < starGive.Length; i++)
         {
             starGive[i] = (i + 1) * (totalObjects / 3);
+            Debug.Log(totalObjects);
         }
 
         starGive[2] = totalObjects;
@@ -268,7 +269,7 @@ public class IngameManager : MonoBehaviour
             {
                 starList[i].gameObject.SetActive(true);
                 getStar++;
-                Debug.Log(getStar);
+                Debug.Log(checkedObject);
             } else
             {
                 starList[i].gameObject.SetActive(false);
