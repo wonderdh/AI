@@ -217,6 +217,7 @@ public class IngameManager : MonoBehaviour
         if(progressBar.value >= 0.95f)
         {
             progressText.text = "Complete!!";
+
         }
     }
 

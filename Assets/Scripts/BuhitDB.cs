@@ -228,6 +228,33 @@ public class BuhitDB : MonoBehaviour
         }
     }
 
+    public void onUnlock(int updateStar, int mapIndex) {
+        string query;
+
+        IDbConnection dbConnection = new SqliteConnection(GetDBFilePath());
+        dbConnection.Open();
+        IDbCommand dbCommand = dbConnection.CreateCommand();
+        // 전체 맵 정보 업데이트
+
+        query = string.Format("UPDATE Star SET Star ={0}", updateStar);
+        dbCommand.CommandText = query;
+        IDataReader dataReader = dbCommand.ExecuteReader();
+        dataReader.Dispose();
+        dataReader = null;
+        //
+        query = string.Format("UPDATE Maps SET isUnlocked={0} WHERE ID={1}", 1, (mapIndex + 1));
+        dbCommand.CommandText = query;
+        dataReader = dbCommand.ExecuteReader();
+
+        dataReader.Dispose();
+        dataReader = null;
+        dbCommand.Dispose();
+        dbCommand = null;
+        dbConnection.Close();
+        dbConnection = null;
+    }
+
+
     public void UpdateTotalStars(int updateTotalStars)
     {
         Debug.Log(updateTotalStars);

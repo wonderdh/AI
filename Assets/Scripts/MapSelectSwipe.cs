@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+//using UnityEngine.UIElements;
 
 public class MapSelectSwipe : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class MapSelectSwipe : MonoBehaviour
     [SerializeField]
     Image panel;
 
+    [SerializeField]
+    TMP_Text star;
+
     Color[] colors = { new Color(141/255f, 253 / 255f, 255 / 255f), new Color(206 / 255f, 255 / 255f, 219 / 255f), new Color(243 / 255f, 191 / 255f, 242 / 255f)};
 
     [SerializeField]
@@ -23,15 +27,32 @@ public class MapSelectSwipe : MonoBehaviour
     [SerializeField]
     TMP_Text progress;
 
-    MapSelectInfos msif;
+    [SerializeField]
+    TMP_Text buttonTxt;
 
-    string focusedMapName;
+    MapSelectInfos msif;
+    int currentStar;
+
+    int focusedMapIndex;
+
+    [SerializeField]
+    GameObject unlockPanel;
+    [SerializeField]
+    Image unlockThumbnail;
+    [SerializeField]
+    TMP_Text unlockPanelMapName;
+    Sprite[] mapImages;
 
     void Start()
     {
         msif = BuhitDB.Instance.getMapSelectInfos();
 
+        currentStar = BuhitDB.Instance.GetStar();
+
+        star.text = "x " + currentStar;
+
         //msif.printThis();
+        mapImages = new Sprite[transform.childCount];
 
         pos = new float[transform.childCount];
         float distance = 1f / (pos.Length - 1f);
@@ -43,7 +64,19 @@ public class MapSelectSwipe : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             int index = i; // 로컬 변수를 사용하여 클로저 문제를 해결합니다.
-            transform.GetChild(i).GetComponent<Button>().onClick.AddListener(() => OnElementClick(index));
+            Transform childT = transform.GetChild(i);
+
+            childT.GetComponent<Button>().onClick.AddListener(() => OnElementClick(index));
+            
+            Image childImg = childT.GetComponent<Image>();
+            mapImages[index] = childImg.sprite;
+
+            if (msif.isUnlocked[i] == 1) // 해금 됐으면 1 아니면 0
+            {
+                childImg.color = new Color(childImg.color.r, childImg.color.g, childImg.color.b, 1f);
+                childT.GetChild(0).gameObject.SetActive(false);
+                childT.GetChild(1).gameObject.SetActive(false);
+            }
         }
     }
 
@@ -93,14 +126,18 @@ public class MapSelectSwipe : MonoBehaviour
 
             mapNameText.text = msif.Name[index];
 
-            /*if (Mathf.Abs(progressBar.value - msif.Progress[index]) > 0.00001f)
-            {
-                StartCoroutine(LerpProgressBar(msif.Progress[index]));
-            }*/
             progressBar.value = msif.Progress[index];
-            progress.text = msif.Progress[index] + "%";
+            progress.text = (msif.Progress[index] * 100) + "%";
 
-            focusedMapName = msif.Name[index];
+            focusedMapIndex = index;
+
+            if (msif.isUnlocked[index] == 1)
+            {
+                buttonTxt.text = "Play!";
+            } else
+            {
+                buttonTxt.text = "Unlock";
+            }
         }
     }
 
@@ -120,8 +157,39 @@ public class MapSelectSwipe : MonoBehaviour
         }
     }
 
-    public void ChangeScene()
+    public void OnClickRedButton()
     {
-        SceneController.Instance.setTargetScene(focusedMapName);
+        if (msif.isUnlocked[focusedMapIndex] == 1)
+        {
+            SceneController.Instance.setTargetScene(msif.Name[focusedMapIndex]);
+        } else
+        {
+            unlockThumbnail.sprite = mapImages[focusedMapIndex];
+            unlockPanelMapName.text = msif.Name[focusedMapIndex];
+            unlockPanel.SetActive(true);
+
+            Debug.Log("사라");
+        }
+    }
+
+    public void closeUnlockPanel()
+    {
+        unlockPanel.SetActive(false);
+    }
+
+    public void onClickUnlockButton()
+    {
+        if(currentStar >= 3)
+        {
+            currentStar -= 3;
+
+            BuhitDB.Instance.onUnlock(currentStar, focusedMapIndex);
+            
+            Debug.Log("unlock success!!" + focusedMapIndex);
+            SceneController.Instance.ReloadScene();
+        } else
+        {
+            Debug.Log("unlock failed...");
+        }
     }
 }

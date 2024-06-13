@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/UI_Main.unity
     guid: 5772d15b421b70c4eba1f3ea9d588370
   - enabled: 1
-    path: Assets/Scenes/MapSelectSwipeTest.unity
+    path: Assets/Scenes/MapSelectSwipe.unity
     guid: bb47430c35835a140bf1870b8dc8a829
   - enabled: 0
     path: Assets/Scenes/MapSelect.unity
@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Haeundae.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   - enabled: 0
-    path: Assets/Scenes/Baseball.unity
+    path: Assets/Scenes/BaseballTMP.unity
     guid: 428564b9ee468e3489bd2078ed3e4650
   - enabled: 0
     path: Assets/Scenes/LoadingScene.unity
