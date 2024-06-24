@@ -76,6 +76,14 @@ public class SwipeMenu : MonoBehaviour
 
     void UpdateDescription(int index)
     {
+        if(ds == null)
+        {
+            Debug.Log("null"+index);
+        }
+
+        Debug.Log(index);
+
+
         if (index >= 0 && index < transform.childCount)
         {
             descriptionText.text = ds[index];

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class IngameManager : MonoBehaviour
 {
+    // Map
     [SerializeField]
     GameObject background;
 
@@ -19,22 +20,23 @@ public class IngameManager : MonoBehaviour
     [SerializeField]
     GameObject[] hiddenObjectList;
 
+    GameObject touchedObject = null;
+
+    MapInfo mapInfo = null;
+
+    //Anim
     [SerializeField]
     GameObject findAnimPrefab;
 
-    GameObject touchedObject = null;
-    
-    MapInfo mapInfo = null;
-
+    //ProgressBar
     [SerializeField]
     Slider progressBar;
     [SerializeField]
     TMP_Text progressText;
 
+    //Star
     [SerializeField]
     GameObject[] starList;
-
-    public string[] description;
 
     int totalObjects = 0;
     int checkedObject = 0;
@@ -43,12 +45,23 @@ public class IngameManager : MonoBehaviour
 
     public int getStar = 0;
 
+    // Audio
     [SerializeField]
     AudioSource buttonAudioSource;
     [SerializeField]
     AudioClip[] audioClip;
 
-    public void Awake()
+    // Swipe
+    public Scrollbar scrollbar;
+    public GameObject descriptionImg;
+    public TMP_Text descriptionText;
+
+    public string[] description;
+
+    float scroll_pos = 0;
+    float[] pos;
+
+    public void Start()
     {
         initBackground();
 
@@ -57,19 +70,21 @@ public class IngameManager : MonoBehaviour
 
         SetProgressBar();
 
-        for(int i = 0; i < starGive.Length; i++)
+        for (int i = 0; i < starGive.Length; i++)
         {
             starGive[i] = (i + 1) * (totalObjects / 3);
-            Debug.Log(totalObjects);
         }
 
         starGive[2] = totalObjects;
 
         checkStar();
+
+        initSwipe();
     }
 
     public void Update()
     {
+        swipeUpdate();
         CheckTouch();
     }
 
@@ -79,7 +94,9 @@ public class IngameManager : MonoBehaviour
         OnTouchEnd();
     }
 
-    private void OnTouchStart() {
+    // 터치 감지
+    private void OnTouchStart()
+    {
         if (Input.GetMouseButtonDown(0))
         { // if left button pressed...
             touchedObject = null;
@@ -88,6 +105,8 @@ public class IngameManager : MonoBehaviour
             {
                 return;
             }
+
+            descriptionImg.SetActive(false);
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -111,6 +130,8 @@ public class IngameManager : MonoBehaviour
             {
                 return;
             }
+
+            descriptionImg.SetActive(false);
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -150,6 +171,8 @@ public class IngameManager : MonoBehaviour
         }
     }
 
+
+    // 배경 및 리스트 초기화
     private void initBackground()
     {
         if (background == null)
@@ -164,12 +187,14 @@ public class IngameManager : MonoBehaviour
             {
                 hiddenObject[i] = background.transform.GetChild(i).gameObject;
             }
-        } else
+        }
+        else
         {
             contentCount = background.transform.childCount;
         }
 
         mapInfo = new MapInfo(contentCount);
+
         description = BuhitDB.Instance.DB_Description(contentCount);
     }
 
@@ -201,7 +226,7 @@ public class IngameManager : MonoBehaviour
     private void SetProgressBar()
     {
         StartCoroutine(LerpProgressBar());
-    } 
+    }
 
     private IEnumerator LerpProgressBar()
     {
@@ -210,7 +235,7 @@ public class IngameManager : MonoBehaviour
         float startValue = progressBar.value;
         float endValue = (float)checkedObject / (float)totalObjects;
 
-        while(delta <= duration)
+        while (delta <= duration)
         {
             float t = delta / duration;
             progressBar.value = Mathf.Lerp(startValue, endValue, t);
@@ -223,7 +248,7 @@ public class IngameManager : MonoBehaviour
 
         progressText.text = checkedObject.ToString() + " / " + totalObjects.ToString();
 
-        if(progressBar.value >= 0.95f)
+        if (progressBar.value >= 0.95f)
         {
             progressText.text = "Complete!!";
 
@@ -240,6 +265,8 @@ public class IngameManager : MonoBehaviour
         GameObject checkMark = go.transform.GetChild(0).gameObject;
         checkMark.SetActive(true);
     }
+
+    // 저장 및 맵 관련 기능들
 
     private void initMapInfo()
     {
@@ -270,7 +297,8 @@ public class IngameManager : MonoBehaviour
                 starList[i].gameObject.SetActive(true);
                 getStar++;
                 Debug.Log(checkedObject);
-            } else
+            }
+            else
             {
                 starList[i].gameObject.SetActive(false);
             }
@@ -281,5 +309,79 @@ public class IngameManager : MonoBehaviour
     {
         buttonAudioSource.Stop();
         buttonAudioSource.PlayOneShot(audioClip[0]);
+    }
+
+
+    // contentList 스크롤 관련
+    private void initSwipe()
+    {
+        pos = new float[content.transform.childCount];
+        float distance = 1f / (pos.Length - 1f);
+        for (int i = 0; i < pos.Length; i++)
+        {
+            pos[i] = distance * i;
+        }
+
+        for (int i = 0; i < content.transform.childCount; i++)
+        {
+            int index = i; // 로컬 변수를 사용하여 클로저 문제를 해결합니다.
+            content.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(() => OnElementClick(index));
+        }
+    }
+
+    // swipe update 부분 수정 해야 할듯
+    //
+    private void swipeUpdate()
+    {
+        if (!SceneController.Instance.IsPointerOverUIObject())
+        {
+            return;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+
+            scroll_pos = 1 - scrollbar.value;
+        }
+        else
+        {
+            for (int i = 0; i < pos.Length; i++)
+            {
+                if (scroll_pos < pos[i] + (1f / (pos.Length * 2f)) && scroll_pos > pos[i] - (1f / (pos.Length * 2f)))
+                {
+                    scrollbar.value = Mathf.Lerp(scrollbar.value, 1 - pos[i], 0.1f);
+                }
+            }
+        }
+
+        for (int i = 0; i < pos.Length; i++)
+        {
+            if (scroll_pos < pos[i] + (1f / (pos.Length * 2f)) && scroll_pos > pos[i] - (1f / (pos.Length * 2f)))
+            {
+                content.transform.GetChild(i).localScale = Vector2.Lerp(content.transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.1f);
+                UpdateDescription(i);
+                for (int a = 0; a < pos.Length; a++)
+                {
+                    if (a != i)
+                    {
+                        content.transform.GetChild(a).localScale = Vector2.Lerp(content.transform.GetChild(a).localScale, new Vector2(0.8f, 0.8f), 0.1f);
+                    }
+                }
+            }
+        }
+    }
+
+    void OnElementClick(int index)
+    {
+        scroll_pos = pos[index];
+    }
+
+    void UpdateDescription(int index)
+    {
+        if (index >= 0 && index < content.transform.childCount)
+        {
+            descriptionImg.SetActive(true);
+            descriptionText.text = description[index];
+        }
     }
 }

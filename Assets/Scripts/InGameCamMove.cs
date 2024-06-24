@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 public class InGameCamMove : MonoBehaviour
 {
     [SerializeField]
+    float camMoveSpeed = 0.2f;
+    float camZoomSpeed = 0.5f;
+
+    [SerializeField]
     float zoomIn = 2f;
     float zoomOut = 3.8f;
 
@@ -18,6 +22,8 @@ public class InGameCamMove : MonoBehaviour
     bool isMoving = true;
     bool isMoveable = true;
 
+    Vector3 lastMousePosition;
+
     enum GESTURE
     {
         MOVE = 1,
@@ -28,7 +34,10 @@ public class InGameCamMove : MonoBehaviour
     void Update()
     {
         MoveCamTouch();
+        MoveCamMouse();
         ZoomCamTouch();
+        ZoomCamMouse();
+
         moveCheck();
     }
 
@@ -65,8 +74,70 @@ public class InGameCamMove : MonoBehaviour
             float touchX = touch.deltaPosition.x;
             float touchY = touch.deltaPosition.y;
 
-            float camMoveX = camX - (touchX * Time.deltaTime);
-            float camMoveY = camY - (touchY * Time.deltaTime);
+            
+            // ì¹´ë©”ë¼ í™•ëŒ€/ì¶•ì†Œì— ë”°ë¥¸ ì´ë™ ì†ë„ ë¹„ìœ¨ ê³„ì‚°
+            float zoomFactor = Camera.main.orthographicSize / zoomOut;
+            float adjustedCamMoveSpeed = camMoveSpeed * zoomFactor;
+
+            float camMoveX = camX - (touchX * Time.deltaTime * adjustedCamMoveSpeed);
+            float camMoveY = camY - (touchY * Time.deltaTime * adjustedCamMoveSpeed);
+             
+            /*
+            float camMoveX = camX - (touchX * Time.deltaTime * camMoveSpeed);
+            float camMoveY = camY - (touchY * Time.deltaTime * camMoveSpeed);
+            */
+
+            if (camMoveX >= maxCamMoveX || camMoveX <= -maxCamMoveX)
+            {
+                camMoveX = camX;
+            }
+
+            if (camMoveY >= maxCamMoveY || camMoveY <= -maxCamMoveY)
+            {
+                camMoveY = camY;
+            }
+
+            Camera.main.transform.position = new Vector3(
+                camMoveX,
+                camMoveY,
+                Camera.main.transform.position.z);
+        }
+    }
+
+    private void MoveCamMouse()
+    {
+        if (isMoveable == false)
+        {
+            return;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (SceneController.Instance.IsPointerOverUIObject() && !isMoving)
+            {
+                isMoveable = false;
+                return;
+            }
+
+            lastMousePosition = Input.mousePosition;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 delta = Input.mousePosition - lastMousePosition;
+            lastMousePosition = Input.mousePosition;
+
+            float camX = Camera.main.transform.position.x;
+            float camY = Camera.main.transform.position.y;
+            float deltaX = delta.x;
+            float deltaY = delta.y;
+
+            // ì¹´ë©”ë¼ í™•ëŒ€/ì¶•ì†Œì— ë”°ë¥¸ ì´ë™ ì†ë„ ë¹„ìœ¨ ê³„ì‚°
+            float zoomFactor = Camera.main.orthographicSize / zoomOut;
+            float adjustedCamMoveSpeed = camMoveSpeed * zoomFactor;
+
+            float camMoveX = camX - (deltaX * Time.deltaTime * adjustedCamMoveSpeed);
+            float camMoveY = camY - (deltaY * Time.deltaTime * adjustedCamMoveSpeed);
 
             if (camMoveX >= maxCamMoveX || camMoveX <= -maxCamMoveX)
             {
@@ -97,21 +168,32 @@ public class InGameCamMove : MonoBehaviour
             Touch touch_1 = Input.touches[0];
             Touch touch_2 = Input.touches[1];
 
-            //ÀÌÀü ÇÁ·¹ÀÓÀÇ ÅÍÄ¡ ÁÂÇ¥¸¦ ±¸ÇÑ´Ù.
+            //ì´ì „ í”„ë ˆìž„ì˜ í„°ì¹˜ ì¢Œí‘œë¥¼ êµ¬í•œë‹¤.
             Vector2 t1PrevPos = touch_1.position - touch_1.deltaPosition;
             Vector2 t2PrevPos = touch_2.position - touch_2.deltaPosition;
 
-            //ÀÌÀü ÇÁ·¹ÀÓ°ú ÇöÀç ÇÁ·¹ÀÓ ¿òÁ÷ÀÓ Å©±â¸¦ ±¸ÇÔ.
+            //ì´ì „ í”„ë ˆìž„ê³¼ í˜„ìž¬ í”„ë ˆìž„ ì›€ì§ìž„ í¬ê¸°ë¥¼ êµ¬í•¨.
             float prevDeltaMag = (t1PrevPos - t2PrevPos).magnitude;
             float deltaMag = (touch_1.position - touch_2.position).magnitude;
 
-            //µÎ Å©±â°ªÀÇ Â÷¸¦ ±¸ÇØ ÁÜ ÀÎ/¾Æ¿ôÀÇ Å©±â°ªÀ» ±¸ÇÑ´Ù.
+            //ë‘ í¬ê¸°ê°’ì˜ ì°¨ë¥¼ êµ¬í•´ ì¤Œ ì¸/ì•„ì›ƒì˜ í¬ê¸°ê°’ì„ êµ¬í•œë‹¤.
             float deltaMagDiff = prevDeltaMag - deltaMag;
 
-            Camera.main.orthographicSize += (deltaMagDiff * Time.deltaTime);
+            Camera.main.orthographicSize += (deltaMagDiff * Time.deltaTime * camZoomSpeed);
             Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, zoomIn, zoomOut);
         }
     }
 
+    private void ZoomCamMouse()
+    {
+        float scrollData;
+        scrollData = Input.GetAxis("Mouse ScrollWheel") ;
 
+        if (scrollData != 0)
+        {
+            Debug.Log(scrollData);
+            Camera.main.orthographicSize -= scrollData;
+            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, zoomIn, zoomOut);
+        }
+    }
 }

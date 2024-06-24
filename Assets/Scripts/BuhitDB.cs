@@ -32,7 +32,6 @@ public class BuhitDB : MonoBehaviour
         }
     }
 
-
     public static BuhitDB Instance
     {
         get
@@ -253,7 +252,6 @@ public class BuhitDB : MonoBehaviour
         dbConnection.Close();
         dbConnection = null;
     }
-
 
     public void UpdateTotalStars(int updateTotalStars)
     {
