@@ -163,6 +163,8 @@ public class IngameManager : MonoBehaviour
                             buttonAudioSource.Stop();
                             buttonAudioSource.PlayOneShot(audioClip[1]);
 
+                            MoveScrollToCheckedObject(i);
+
                             break;
                         }
                     }
@@ -264,6 +266,13 @@ public class IngameManager : MonoBehaviour
 
         GameObject checkMark = go.transform.GetChild(0).gameObject;
         checkMark.SetActive(true);
+    }
+    private void MoveScrollToCheckedObject(int index)
+    {
+        float distance = 1f / (pos.Length - 1f);
+        scroll_pos = pos[index];
+        scrollbar.value = 1 - pos[index];
+        UpdateDescription(index);
     }
 
     // 저장 및 맵 관련 기능들
